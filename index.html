@@ -20,10 +20,8 @@
       }
     });
 
-    function trackEvent(eventName) {
-      window.amplitude.track(eventName);
-      console.log(`${eventName} tracked`);
-    }
+    // Track page view (important for funnel)
+    window.amplitude.track("landing_page_viewed");
   </script>
 
   <style>
@@ -96,6 +94,20 @@
   <button class="signup" onclick="trackEvent('sign_up_clicked')">Sign Up</button>
   <button class="demo" onclick="trackEvent('request_demo_clicked')">Request Demo</button>
 </section>
+
+<!-- ✅ FIXED: Place script here -->
+<script>
+  function trackEvent(eventName) {
+    if (window.amplitude && window.amplitude.track) {
+      window.amplitude.track(eventName);
+      console.log(eventName + " tracked");
+      alert(eventName + " clicked!");
+    } else {
+      console.error("Amplitude not loaded yet");
+      alert("Tracking not ready yet");
+    }
+  }
+</script>
 
 </body>
 </html>
