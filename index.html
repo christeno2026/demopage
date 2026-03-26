@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demo Page</title>
+
+  <!-- Amplitude Tracking -->
+  <script src="https://cdn.eu.amplitude.com/script/b481a86c6fb2cf9507a61e2a502af413.js"></script>
+  <script>
+    window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
+
+    window.amplitude.init('b481a86c6fb2cf9507a61e2a502af413', {
+      fetchRemoteConfig: true,
+      serverZone: "EU",
+      autocapture: {
+        pageViews: true,
+        sessions: true,
+        elementInteractions: true
+      }
+    });
+
+    function trackEvent(eventName) {
+      window.amplitude.track(eventName);
+      console.log(`${eventName} tracked`);
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      text-align: center;
+      background: #f4f6f9;
+    }
+
+    header {
+      background: #4CAF50;
+      color: #fff;
+      padding: 50px 20px;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    button {
+      padding: 15px 25px;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .signup {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .demo {
+      background-color: #2196F3;
+      color: #fff;
+    }
+
+    .feature {
+      margin: 15px 0;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Welcome to Eno Digitals</h1>
+  <p>Boost your productivity with our smart solutions</p>
+  <button class="signup" onclick="trackEvent('sign_up_clicked')">Sign Up</button>
+  <button class="demo" onclick="trackEvent('request_demo_clicked')">Request Demo</button>
+</header>
+
+<section>
+  <h2>Features</h2>
+  <div class="feature">✔ Easy to use</div>
+  <div class="feature">✔ Fast performance</div>
+  <div class="feature">✔ Data-driven insights</div>
+</section>
+
+<section>
+  <h2>Get Started Today</h2>
+  <button class="signup" onclick="trackEvent('sign_up_clicked')">Sign Up</button>
+  <button class="demo" onclick="trackEvent('request_demo_clicked')">Request Demo</button>
+</section>
+
+</body>
+</html>
